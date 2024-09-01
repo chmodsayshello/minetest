@@ -92,6 +92,8 @@ private:
 	// If the selected text changed, we need to update the (X11) primary selection.
 	void updatePrimarySelection();
 
+	void updateScrollbar();
+
 private:
 	ChatBackend* m_chat_backend;
 	Client* m_client;

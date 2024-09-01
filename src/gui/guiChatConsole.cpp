@@ -125,11 +125,7 @@ void GUIChatConsole::openConsole(f32 scale)
 	m_desired_height_fraction = scale;
 	m_desired_height = scale * m_screensize.Y;
 	reformatConsole();
-
-	m_scrollbar->setMin(m_chat_backend->getConsoleBuffer().getTopScrollPos());
-	m_scrollbar->setMax(m_chat_backend->getConsoleBuffer().getBottomScrollPos());
-	m_scrollbar->setPos(m_chat_backend->getConsoleBuffer().getScrollPosition());
-	m_scrollbar->setVisible(m_scrollbar_enabled && m_scrollbar->getMin() != m_scrollbar->getMax());
+	updateScrollbar();
 
 	m_animate_time_old = porting::getTimeMs();
 	IGUIElement::setVisible(true);
@@ -241,7 +237,6 @@ void GUIChatConsole::reformatConsole()
 
 	if (m_scrollbar_enabled) {
 		m_scrollbar->setRelativePosition(core::rect<s32> (m_screensize.X - 32, 0, m_screensize.X, m_height));
-		m_scrollbar->setPageSize(m_fontsize.Y * m_chat_backend->getConsoleBuffer().getLineCount());
 	}
 
 	recalculateConsolePosition();
@@ -355,11 +350,10 @@ void GUIChatConsole::drawText()
 
 
 			core::recti rect;
-			if (m_scrollbar_enabled && m_scrollbar->isVisible()) {
+			if (m_scrollbar_enabled && m_scrollbar->isVisible())
 				// leave 4 pixels of space between scrollbar and text
 				rect = core::rect<s32> (0, 0, m_screensize.X - 32 - 4, m_height);
-				m_scrollbar->setPos(buf.getScrollPosition());
-			} else
+			else
 				rect = AbsoluteClippingRect;
 
 
@@ -384,6 +378,8 @@ void GUIChatConsole::drawText()
 			}
 		}
 	}
+
+	updateScrollbar();
 }
 
 void GUIChatConsole::drawPrompt()
@@ -818,4 +814,16 @@ void GUIChatConsole::updatePrimarySelection()
 	std::wstring wselected = m_chat_backend->getPrompt().getSelection();
 	std::string selected = wide_to_utf8(wselected);
 	Environment->getOSOperator()->copyToPrimarySelection(selected.c_str());
+}
+
+void GUIChatConsole::updateScrollbar()
+{
+	if (!m_scrollbar_enabled)
+		return;
+
+	m_scrollbar->setMin(m_chat_backend->getConsoleBuffer().getTopScrollPos());
+	m_scrollbar->setMax(m_chat_backend->getConsoleBuffer().getBottomScrollPos());
+	m_scrollbar->setPos(m_chat_backend->getConsoleBuffer().getScrollPosition());
+	m_scrollbar->setVisible(m_scrollbar_enabled && m_scrollbar->getMin() != m_scrollbar->getMax());
+	m_scrollbar->setPageSize(m_fontsize.Y * m_chat_backend->getConsoleBuffer().getLineCount());
 }
