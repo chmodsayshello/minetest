@@ -243,7 +243,7 @@ void GUIChatConsole::reformatConsole()
 		m_scrollbar->setRelativePosition(core::rect<s32> (m_screensize.X - 32, 0, m_screensize.X, m_height));
 		m_scrollbar->setPageSize(m_fontsize.Y * m_chat_backend->getConsoleBuffer().getLineCount());
 	}
-	
+
 	recalculateConsolePosition();
 	m_chat_backend->reformat(cols, rows);
 }
@@ -359,9 +359,9 @@ void GUIChatConsole::drawText()
 				// leave 4 pixels of space between scrollbar and text
 				rect = core::rect<s32> (0, 0, m_screensize.X - 32 - 4, m_height);
 				m_scrollbar->setPos(buf.getScrollPosition());
-			} else 
+			} else
 				rect = AbsoluteClippingRect;
-			
+
 
 			if (m_font->getType() == irr::gui::EGFT_CUSTOM) {
 				// Draw colored text if possible
@@ -734,10 +734,6 @@ bool GUIChatConsole::OnEvent(const SEvent& event)
 			(void*) event.GUIEvent.Caller == (void*) m_scrollbar)
 	{
 		m_chat_backend->getConsoleBuffer().scrollAbsolute(m_scrollbar->getPos());
-	}
-
-	if (event.EventType == EET_GUI_EVENT && event.GUIEvent.EventType != EGET_ELEMENT_HOVERED && event.GUIEvent.EventType != EGET_ELEMENT_LEFT) {
-		asm("nop");
 	}
 
 	return Parent ? Parent->OnEvent(event) : false;
