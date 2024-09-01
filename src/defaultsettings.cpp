@@ -134,11 +134,7 @@ void set_default_settings()
 	settings->setDefault("occlusion_culler", "bfs");
 	settings->setDefault("enable_raytraced_culling", "true");
 	settings->setDefault("chat_weblink_color", "#8888FF");
-#ifndef __ANDROID__
-	settings->setDefault("chat_scrollbar", "false");
-#else
 	settings->setDefault("chat_scrollbar", "true");
-#endif
 
 	// Keymap
 	settings->setDefault("remote_port", "30000");
