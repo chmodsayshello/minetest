@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "modalMenu.h"
 #include "chat.h"
 #include "config.h"
+#include "guiScrollBar.h"
 
 class Client;
 
@@ -95,6 +96,7 @@ private:
 	ChatBackend* m_chat_backend;
 	Client* m_client;
 	IMenuManager* m_menumgr;
+	GUIScrollBar* m_scrollbar = nullptr;
 
 	// current screen size
 	v2u32 m_screensize;
@@ -138,4 +140,6 @@ private:
 	bool m_cache_clickable_chat_weblinks;
 	// Track if a ctrl key is currently held down
 	bool m_is_ctrl_down;
+	// Render a scrollbar (mainly for Android)
+	bool m_scrollbar_enabled;
 };
