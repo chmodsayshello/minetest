@@ -142,6 +142,4 @@ private:
 	bool m_cache_clickable_chat_weblinks;
 	// Track if a ctrl key is currently held down
 	bool m_is_ctrl_down;
-	// Render a scrollbar (mainly for Android)
-	bool m_scrollbar_enabled;
 };

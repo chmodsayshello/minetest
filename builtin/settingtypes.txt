@@ -759,10 +759,6 @@ clickable_chat_weblinks (Chat weblinks) bool true
 #    Optional override for chat weblink color.
 chat_weblink_color (Weblink color) string #8888FF
 
-#   Whether or not to display a scrollbar in the chatwindow.
-#   Recommended for mobile players.
-chat_scrollbar (Show chat scrollbar) bool false
-
 #    Font size of the recent chat text and chat prompt in point (pt).
 #    Value 0 will use the default font size.
 chat_font_size (Chat font size) int 0 0 72
