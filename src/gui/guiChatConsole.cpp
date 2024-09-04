@@ -129,7 +129,6 @@ void GUIChatConsole::openConsole(f32 scale)
 	m_desired_height_fraction = scale;
 	m_desired_height = scale * m_screensize.Y;
 	reformatConsole();
-	updateScrollbar();
 
 	m_animate_time_old = porting::getTimeMs();
 	IGUIElement::setVisible(true);
