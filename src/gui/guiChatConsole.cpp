@@ -45,7 +45,7 @@ inline bool isInCtrlKeys(const irr::EKEY_CODE& kc)
 
 inline u32 getScrollbarSize(IGUIEnvironment* env)
 {
-	return env->getSkin() ? env->getSkin()->getSize(gui::EGDS_SCROLLBAR_SIZE) : 16;
+	return env->getSkin()->getSize(gui::EGDS_SCROLLBAR_SIZE);
 }
 
 GUIChatConsole::GUIChatConsole(
