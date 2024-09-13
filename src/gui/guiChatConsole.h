@@ -23,9 +23,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 #include "modalMenu.h"
 #include "chat.h"
 #include "config.h"
-#include "guiScrollBar.h"
 
 class Client;
+class GUIScrollBar;
 
 class GUIChatConsole : public gui::IGUIElement
 {
