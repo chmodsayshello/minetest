@@ -54,9 +54,15 @@ function get_screenshot(package, screenshot_url, level)
 		return defaulttexturedir .. "loading_screenshot.png"
 	end
 
-	local filepath = screenshot_dir .. DIR_DELIM ..
-			("%s-%s-%s-l%d-%s"):format(package.type, package.author, package.name,
-				level, get_filename(screenshot_url))
+	local filename = ("%s-%s-%s-l%d-%s"):format(package.type, package.author, package.name,
+						level, get_filename(screenshot_url))
+
+	local filepath = screenshot_dir .. DIR_DELIM .. filename
+
+	if filename:find("/") then
+		core.log("warning", ("Filename of CDB-preview contains /, path travelsal? Resulting path: \"%s\""):format(filepath))
+		return defaulttexturedir .. "no_screenshot.png"
+	end
 
 	-- Return if already downloaded
 	local file = io.open(filepath, "r")
